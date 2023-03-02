@@ -5,10 +5,14 @@ import App from './App';
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/font-awesome/css/font-awesome.min.css";
 import 'react-loading-skeleton/dist/skeleton.css'
+import { Provider } from 'react-redux';
+import store from "./store/index" 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <App />
+    <Provider store={store} >
+        <App />
+    </Provider>
 );
 
 

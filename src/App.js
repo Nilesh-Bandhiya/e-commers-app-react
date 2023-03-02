@@ -1,12 +1,12 @@
 import "./App.css";
 import Home from "./components/Home";
-import Navbar from "./components/Navbar";
 import Products from "./components/Products";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
-import Product from "./components/Product";
 import About from "./components/About";
 import Contact from "./components/Contact";
+import Cart from "./components/Cart";
+import ProductDetail from "./components/ProductDetail";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +15,8 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "products", element: <Products /> },
-      { path: "products/:productId", element: <Product /> },
+      { path: "products/:productId", element: <ProductDetail /> },
+      { path: "cart", element: <Cart /> },
       { path: "about", element: <About /> },
       { path: "contact", element: <Contact /> },
     ],

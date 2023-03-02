@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../store/cart-slice";
 
-const Product = () => {
+const ProductDetail = () => {
+  const dispatch = useDispatch()
   const { productId } = useParams();
 
   const [product, setProduct] = useState([]);
@@ -19,7 +22,17 @@ const Product = () => {
     };
 
     getProduct();
+    // eslint-disable-next-line
   }, []);
+
+  const handleAddProduct = (product) => {
+    dispatch(cartActions.addItemToCart({
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      image: product.image,
+    }))
+  }
 
   const Loading = () => {
     return (
@@ -27,14 +40,14 @@ const Product = () => {
         <div className="col-md-6">
           <Skeleton height={400} />
         </div>
-        <div className="col-md-6" style={{lineHeight: 2}}>
+        <div className="col-md-6" style={{ lineHeight: 2 }}>
           <Skeleton height={50} width={300} />
-          <Skeleton height={75}  />
+          <Skeleton height={75} />
           <Skeleton height={25} width={150} />
-          <Skeleton height={50} width={200}  />
-          <Skeleton height={150}  />
+          <Skeleton height={50} width={200} />
+          <Skeleton height={150} />
           <Skeleton height={50} width={100} />
-          <Skeleton height={50} width={100} style={{marginLeft: 6}} />
+          <Skeleton height={50} width={100} style={{ marginLeft: 6 }} />
         </div>
       </>
     );
@@ -45,6 +58,7 @@ const Product = () => {
       <>
         <div className="col-md-6">
           <img
+            className="product-img"
             src={product.image}
             alt={product.title}
             height="400px"
@@ -60,7 +74,7 @@ const Product = () => {
           </p>
           <h3 className="display-6 fw-bold my-4">$ {product.price}</h3>
           <p className="lead">{product.description}</p>
-          <button className="btn btn-outline-dark px-4 py-2">
+          <button onClick={() => {handleAddProduct(product)}} className="btn btn-outline-dark px-4 py-2">
             Add to Cart
           </button>
           <NavLink to="/cart" className="btn btn-dark ms-2 px-4 py-2">
@@ -82,4 +96,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default ProductDetail;

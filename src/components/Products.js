@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -19,6 +19,7 @@ const Products = () => {
         setLoading(false);
       }
       return () => {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         componentMount = false;
       };
     };
@@ -98,7 +99,7 @@ const Products = () => {
         {filter.map((product) => {
           return (
               <div className="col-md-3 mb-3" key={product.id}>
-                <div className="card h-100 text-center p-4" key={product.id}>
+                <div className="main-card card h-100 text-center p-4" key={product.id}>
                   <img
                     src={product.image}
                     className="card-img-top"
@@ -135,7 +136,6 @@ const Products = () => {
           {loading ? <Loading /> : <ShowProducts />}
         </div>
       </div>
-      {/* <Outlet /> */}
     </>
 
   );

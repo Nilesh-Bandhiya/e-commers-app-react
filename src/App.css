@@ -2,11 +2,20 @@
   font-size: 18px;
 }
 
-.card {
+.main-card {
   transition: all 0.5s ease;
 }
 
-.card:hover{
+.main-card:hover{
+  transform: scale(1.05);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+}
+
+.product-img {
+  transition: all 0.5s ease;
+}
+
+.product-img:hover{
   transform: scale(1.1);
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 5px rgb(255, 255, 255);
 }
