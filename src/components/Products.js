@@ -65,7 +65,6 @@ const Products = () => {
   };
 
   return (
-    <>
       <div className="container my-3 py-2">
         <div className="row">
           <div className="col-12 mb-3">
@@ -77,8 +76,6 @@ const Products = () => {
           {loading ? <Loading /> : <ShowProducts />}
         </div>
       </div>
-    </>
-
   );
 };
 
