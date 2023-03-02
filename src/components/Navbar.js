@@ -8,7 +8,7 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark bg-body-tertiary py-2">
         <div className="container">
-          <NavLink className="navbar-brand fw-bold fs-4">
+          <NavLink to="/" className="navbar-brand fw-bold fs-4">
             Radhe Collection
           </NavLink>
           <button
