@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
-import { Link } from "react-router-dom";
+import CategoryFilter from "./CategoryFilter";
+import ProductItem from "./ProductItem";
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -46,77 +47,17 @@ const Products = () => {
     );
   };
 
-  const filterHandler = (category) => {
-    const filteredProducts = data.filter(
-      (product) => (product.category === category)
-    );
-    setFilter(filteredProducts);
+  const filterHandler = (filteredItems) => {
+    setFilter(filteredItems);
   };
 
   const ShowProducts = () => {
     return (
       <>
-        <div className="buttons d-flex justify-content-center mb-4 pb-4">
-          <button
-            className="btn btn-outline-dark ms-2"
-            onClick={() => setFilter(data)}
-          >
-            All
-          </button>
-          <button
-            className="btn btn-outline-dark ms-2"
-            onClick={() => {
-              filterHandler("men's clothing");
-            }}
-          >
-            Men's Clothing
-          </button>
-          <button
-            className="btn btn-outline-dark ms-2"
-            onClick={() => {
-              filterHandler("women's clothing");
-            }}
-          >
-            Women's Clothing
-          </button>
-          <button
-            className="btn btn-outline-dark ms-2"
-            onClick={() => {
-              filterHandler("jewelery");
-            }}
-          >
-            Jewelery
-          </button>
-          <button
-            className="btn btn-outline-dark ms-2"
-            onClick={() => {
-              filterHandler("electronics");
-            }}
-          >
-            Electronics
-          </button>
-        </div>
+        <CategoryFilter data={data} categoryFilterHandler={filterHandler} />
         {filter.map((product) => {
           return (
-              <div className="col-md-3 mb-3" key={product.id}>
-                <div className="main-card card h-100 text-center p-4" key={product.id}>
-                  <img
-                    src={product.image}
-                    className="card-img-top"
-                    alt={product.title}
-                    height="250px"
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title mb-0">
-                      {product.title.substring(0, 12)}...
-                    </h5>
-                    <p className="card-text lead fw-bold">${product.price}</p>
-                    <Link to={`${product.id}`} className="btn btn-outline-dark">
-                      Buy Now
-                    </Link>
-                  </div>
-                </div>
-              </div>
+              <ProductItem  key={product.id} product={product} />
           );
         })}
       </>
