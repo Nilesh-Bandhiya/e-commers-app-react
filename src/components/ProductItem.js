@@ -15,15 +15,17 @@ const ProductItem = ({ product, like }) => {
 
   const wishlistHandler = (event) => {
     event.stopPropagation();
-    dispatch(
-      wishlistActions.toggleItemToWishlist(product.id)
-    );
+    dispatch(wishlistActions.toggleItemToWishlist(product.id));
   };
 
   return (
     <div className="col-md-3 mb-3" role="button" onClick={detailPageHandler}>
       <div className="main-card card h-100 p-3">
-        <i className={`wishlistIcon fa fa-heart${like ? "" : "-o"}`} role="button" onClick={wishlistHandler} />
+        <i
+          className={`wishlistIcon fa fa-heart${like ? "" : "-o"}`}
+          role="button"
+          onClick={wishlistHandler}
+        />
         <img
           src={product.image}
           className="card-img-top"
@@ -36,7 +38,7 @@ const ProductItem = ({ product, like }) => {
           </h5>
           <div className="row">
             <div className="col-md-3">
-              <span className="badge text-bg-success fw-bold lead text-start">
+              <span className="badge text-bg-success text-start">
                 {product.rating && product.rating.rate}{" "}
                 <i className="fa fa-star"></i>
               </span>

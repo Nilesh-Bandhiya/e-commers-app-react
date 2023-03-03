@@ -12,7 +12,12 @@ const Contact = () => {
         </div>
         <div className="row">
           <div className="col-md-5">
-            <img src="/assets/contact.png" alt="Contact Us" height="400px" width="400px" />
+            <img
+              src="/assets/contact.png"
+              alt="Contact Us"
+              height="400px"
+              width="400px"
+            />
           </div>
           <div className="col-md-6">
             <form>
@@ -51,7 +56,9 @@ const Contact = () => {
                   rows="3"
                 ></textarea>
               </div>
-              <button type="submit" className="btn btn-primary">Send Message</button>
+              <button type="submit" className="btn btn-primary">
+                Send Message
+              </button>
             </form>
           </div>
         </div>

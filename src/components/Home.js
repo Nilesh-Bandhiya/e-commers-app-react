@@ -7,15 +7,15 @@ const Home = () => {
         <img
           src="/assets/main-bg.jpg"
           className="card-img"
-          alt="Background Image"
+          alt="Main Background"
           height="683px"
         />
         <div className="card-img-overlay d-flex flex-column justify-content-center">
           <div className="container">
-            <h5 className="card-title display-3 fw-bolder mb-0">NEW SEASON ARRIVAL</h5>
-            <p className="card-text lead fs-2">
-              CHECKOUT ALL THE TRENDS
-            </p>
+            <h5 className="card-title display-3 fw-bolder mb-0">
+              NEW SEASON ARRIVAL
+            </h5>
+            <p className="card-text lead fs-2">CHECKOUT ALL THE TRENDS</p>
           </div>
         </div>
       </div>

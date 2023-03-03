@@ -4,7 +4,6 @@ import CartButton from "./CartButton";
 import WishlistButton from "./WishlistButton";
 
 const Navbar = () => {
-
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-dark navbar-dark bg-body-tertiary py-2">
