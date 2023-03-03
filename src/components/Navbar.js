@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import CartButton from "./CartButton";
+import WishlistButton from "./WishlistButton";
 
 const Navbar = () => {
 
@@ -52,6 +53,7 @@ const Navbar = () => {
               <NavLink to="/register" className="btn btn-outline-light ms-2">
                 <i className="fa fa-user-plus"></i> Register
               </NavLink>
+              <WishlistButton />
               <CartButton />
             </div>
           </div>

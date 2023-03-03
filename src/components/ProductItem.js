@@ -1,9 +1,13 @@
-import React,{useState} from "react";
-import {  useNavigate } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { wishlistActions } from "../store/wishlist-slice";
+// const like = false;
 
-const ProductItem = ({ product }) => {
+const ProductItem = ({ product, like }) => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
-  const [like, setLike] = useState(false);
 
   const detailPageHandler = () => {
     navigate(`${product.id}`);
@@ -11,14 +15,15 @@ const ProductItem = ({ product }) => {
 
   const wishlistHandler = (event) => {
     event.stopPropagation();
-    setLike(!like);
+    dispatch(
+      wishlistActions.toggleItemToWishlist(product.id)
+    );
   };
 
   return (
     <div className="col-md-3 mb-3" role="button" onClick={detailPageHandler}>
       <div className="main-card card h-100 p-3">
-      <i className={`wishlistbutton fa fa-heart${like?"":"-o"}`} role="button" onClick={wishlistHandler} />
-        {/* <i className="wishlistbutton fa fa-heart" ></i> */}
+        <i className={`wishlistIcon fa fa-heart${like ? "" : "-o"}`} role="button" onClick={wishlistHandler} />
         <img
           src={product.image}
           className="card-img-top"

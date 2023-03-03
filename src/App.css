@@ -17,11 +17,16 @@
 
 .product-img:hover {
   transform: scale(1.1);
-  box-shadow: 5px 5px 5px rgb(255, 255, 255);
+  /* box-shadow: 5px 5px 5px rgb(255, 255, 255); */
 }
 
-.wishlistbutton {
+.wishlistIcon {
   width: 17.5px;
   height: 17px;
   margin-left: auto;
+}
+
+.wishlistButton {
+  width: 42px !important;
+  margin-left: 450px;
 }

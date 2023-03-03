@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import Skeleton from "react-loading-skeleton";
 import CategoryFilter from "./CategoryFilter";
 import ProductItem from "./ProductItem";
+import { useSelector } from "react-redux";
 
 const Products = () => {
+
+  const likedProductIds = useSelector((state) => state.wishlist?.products)
+
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -57,7 +61,7 @@ const Products = () => {
         <CategoryFilter data={data} categoryFilterHandler={filterHandler} />
         {filter.map((product) => {
           return (
-              <ProductItem  key={product.id} product={product} />
+              <ProductItem like={likedProductIds.indexOf(product.id) === -1 ? false : true} key={product.id} product={product} />
           );
         })}
       </>
