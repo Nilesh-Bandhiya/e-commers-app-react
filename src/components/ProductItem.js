@@ -1,25 +1,27 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React,{useState} from "react";
+import {  useNavigate } from "react-router-dom";
 
 const ProductItem = ({ product }) => {
   const navigate = useNavigate();
+  const [like, setLike] = useState(false);
 
   const detailPageHandler = () => {
     navigate(`${product.id}`);
   };
 
-  const wishlistHandler = () => {
-    console.log("wishlist added");
+  const wishlistHandler = (event) => {
+    event.stopPropagation();
+    setLike(!like);
   };
 
   return (
     <div className="col-md-3 mb-3" role="button" onClick={detailPageHandler}>
       <div className="main-card card h-100 p-3">
-      <i className="fa fa-heart-o" role="button" onClick={wishlistHandler} ></i>
-        {/* <i className="fa fa-heart" ></i> */}
+      <i className={`wishlistbutton fa fa-heart${like?"":"-o"}`} role="button" onClick={wishlistHandler} />
+        {/* <i className="wishlistbutton fa fa-heart" ></i> */}
         <img
           src={product.image}
-          className="card-img-top mt-2"
+          className="card-img-top"
           alt={product.title}
           height="250px"
         />
@@ -35,7 +37,7 @@ const ProductItem = ({ product }) => {
               </span>
             </div>
             <div className="col-md-4">
-              <p className="fw-bolder">
+              <p className="fw-bolder mb-2">
                 {product.rating && `(${product.rating.count})`}{" "}
               </p>
             </div>

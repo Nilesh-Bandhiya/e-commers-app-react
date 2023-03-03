@@ -6,7 +6,7 @@
   transition: all 0.5s ease;
 }
 
-.main-card:hover{
+.main-card:hover {
   transform: scale(1.01);
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
 }
@@ -15,7 +15,13 @@
   transition: all 0.5s ease;
 }
 
-.product-img:hover{
+.product-img:hover {
   transform: scale(1.1);
   box-shadow: 5px 5px 5px rgb(255, 255, 255);
+}
+
+.wishlistbutton {
+  width: 17.5px;
+  height: 17px;
+  margin-left: auto;
 }
