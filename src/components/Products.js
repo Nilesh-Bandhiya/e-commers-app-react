@@ -3,28 +3,24 @@ import { useSelector, useDispatch } from "react-redux";
 import Skeleton from "react-loading-skeleton";
 import CategoryFilter from "./CategoryFilter";
 import ProductItem from "./ProductItem";
-import { productActions } from "../store/product-slice";
+import { getProducts } from "../store/product-slice";
 
 const Products = () => {
   const dispatch = useDispatch();
   const likedProductIds = useSelector((state) => state.wishlist?.products);
-  const products = useSelector((state) => state.product?.products);
+  const { products, loading, error } = useSelector((state) => state?.product);
 
   const [filter, setFilter] = useState(products);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const getProducts = async () => {
-      setLoading(true);
-      const response = await fetch("https://fakestoreapi.com/products");
-      let data = await response.json();
-      dispatch(productActions.getAllProducts(data));
-      setLoading(false);
-    };
+    dispatch(getProducts());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-    getProducts();
-  }, [dispatch]);
-  
+
+  const Error = () => {
+   return <h2 className="text-center my-5">{error}</h2>
+  }
 
   const Loading = () => {
     return (
@@ -53,7 +49,7 @@ const Products = () => {
     return (
       <>
         <CategoryFilter data={products} categoryFilterHandler={filterHandler} />
-        {filter.map((product) => {
+        {filter?.map((product) => {
           return (
             <ProductItem
               like={likedProductIds.indexOf(product.id) === -1 ? false : true}
@@ -75,7 +71,9 @@ const Products = () => {
         </div>
       </div>
       <div className="row justify-content-center">
-        {loading ? <Loading /> : <ShowProducts />}
+        {loading && <Loading /> }
+        {!loading && !error && <ShowProducts /> }
+        {!loading && error && <Error /> }
       </div>
     </div>
   );
